@@ -29,6 +29,8 @@ dependencies {
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	implementation("org.springdoc:springdoc-openapi-ui:1.6.3")
 	implementation("org.springdoc:springdoc-openapi-kotlin:1.6.3")
+	implementation("com.h2database:h2:2.3.232")
+
 }
 
 kotlin {
