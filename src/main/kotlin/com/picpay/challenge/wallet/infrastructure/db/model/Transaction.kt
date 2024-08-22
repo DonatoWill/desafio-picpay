@@ -13,7 +13,8 @@ data class Transaction(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
     val payerWallet: Long,
-    val payeeWallet: Long,
+    val payeeWallet: Long?,
     val amount: BigDecimal,
+    val type: String, //deposit, withdraw, transfer, payment
     val createdAt: LocalDateTime
 )

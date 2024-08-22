@@ -3,6 +3,7 @@ package com.picpay.challenge.wallet.domain.usecase
 import com.picpay.challenge.wallet.app.dto.request.TransactionRequest
 import com.picpay.challenge.wallet.app.dto.response.TransactionResponse
 import com.picpay.challenge.wallet.infrastructure.db.model.Transaction
+import com.picpay.challenge.wallet.infrastructure.db.model.TransactionType
 import com.picpay.challenge.wallet.infrastructure.db.model.Wallet
 import com.picpay.challenge.wallet.infrastructure.db.repository.TransactionRepository
 import com.picpay.challenge.wallet.infrastructure.db.repository.WalletRepository
@@ -24,6 +25,7 @@ class CreateTransactionUseCase(
             transactionRequest.payeeWallet,
             transactionRequest.payerWallet,
             transactionRequest.amount,
+            TransactionType.TRANSFER.name,
             LocalDateTime.now()
         )
 
@@ -35,10 +37,12 @@ class CreateTransactionUseCase(
         walletRepository.save(walletPayer.debit(transactionRequest.amount))
         walletRepository.save(walletPayee.credit(transactionRequest.amount))
 
-        return TransactionResponse(newTransaction.id!!,
+        return TransactionResponse(
+            newTransaction.id,
             newTransaction.payerWallet,
             newTransaction.payeeWallet,
-            newTransaction.amount)
+            newTransaction.amount
+        )
     }
 
 
