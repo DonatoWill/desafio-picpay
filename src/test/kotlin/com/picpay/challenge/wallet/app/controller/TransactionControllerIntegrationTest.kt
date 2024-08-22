@@ -1,4 +1,4 @@
-package com.picpay.challenge.wallet
+package com.picpay.challenge.wallet.app.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.picpay.challenge.wallet.app.dto.request.TransactionRequest
@@ -14,14 +14,13 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.post
 import java.math.BigDecimal
-import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class EWalletApplicationTests @Autowired constructor(
+class TransactionControllerIntegrationTest @Autowired constructor(
     val mockMvc: MockMvc,
     val objectMapper: ObjectMapper,
     val walletRepository: WalletRepository
@@ -34,7 +33,7 @@ class EWalletApplicationTests @Autowired constructor(
     }
 
     @Test
-    fun `should return success when create a validated transaction`() {
+    fun `should return success when create a validated transaction and update wallet balance`() {
         val request = TransactionRequest(1, 2, BigDecimal.valueOf(500))
         mockMvc.post("/wallet/transactions") {
             contentType = MediaType.APPLICATION_JSON
