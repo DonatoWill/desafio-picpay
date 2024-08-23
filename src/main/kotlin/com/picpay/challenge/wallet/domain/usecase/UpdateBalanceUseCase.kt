@@ -12,8 +12,8 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 class UpdateBalanceUseCase(
-    val walletRepository: WalletRepository,
-    val transactionRepository: TransactionRepository
+    private val walletRepository: WalletRepository,
+    private val transactionRepository: TransactionRepository
 ) {
 
     @Transactional

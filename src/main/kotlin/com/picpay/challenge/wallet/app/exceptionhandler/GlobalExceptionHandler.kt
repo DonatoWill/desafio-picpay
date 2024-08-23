@@ -1,7 +1,7 @@
 package com.picpay.challenge.wallet.app.exceptionhandler
 
 import com.picpay.challenge.wallet.app.dto.response.ErrorResponse
-import commons.exception.WalletNotFoundException
+import com.picpay.challenge.wallet.commons.exception.WalletNotFoundException
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

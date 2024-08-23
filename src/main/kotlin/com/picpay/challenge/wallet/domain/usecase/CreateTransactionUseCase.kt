@@ -7,15 +7,15 @@ import com.picpay.challenge.wallet.infrastructure.db.model.*
 import com.picpay.challenge.wallet.infrastructure.db.repository.TransactionRepository
 import com.picpay.challenge.wallet.infrastructure.db.repository.TransferRepository
 import com.picpay.challenge.wallet.infrastructure.db.repository.WalletRepository
-import commons.exception.WalletNotFoundException
+import com.picpay.challenge.wallet.commons.exception.WalletNotFoundException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 class CreateTransactionUseCase(
-    val walletRepository: WalletRepository,
-    val transactionRepository: TransactionRepository,
-    val transferRepository: TransferRepository
+    private val walletRepository: WalletRepository,
+    private val transactionRepository: TransactionRepository,
+    private val transferRepository: TransferRepository
 ) {
 
     @Transactional

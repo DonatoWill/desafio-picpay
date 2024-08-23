@@ -10,7 +10,7 @@ import java.math.BigDecimal
 
 @Service
 class CreateWalletUseCase(
-    val walletRepository: WalletRepository
+    private val walletRepository: WalletRepository
 ) {
 
     @Transactional

@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("wallet")
 class TransactionController(
-    val createTransactionUseCase: CreateTransactionUseCase,
-    val findTransactions: FindTransactionsUseCase
+    private val createTransactionUseCase: CreateTransactionUseCase,
+    private val findTransactions: FindTransactionsUseCase
 ) {
 
     @PostMapping("/transactions")

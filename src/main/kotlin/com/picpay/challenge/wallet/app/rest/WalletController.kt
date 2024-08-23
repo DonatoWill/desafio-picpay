@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("wallet")
 class WalletController(
-    val createWalletUseCase: CreateWalletUseCase,
-    val updateBalanceUseCase: UpdateBalanceUseCase
+    private val createWalletUseCase: CreateWalletUseCase,
+    private val updateBalanceUseCase: UpdateBalanceUseCase
 ) {
 
     @PostMapping

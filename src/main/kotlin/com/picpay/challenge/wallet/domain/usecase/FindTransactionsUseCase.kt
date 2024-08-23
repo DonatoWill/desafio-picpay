@@ -5,7 +5,7 @@ import com.picpay.challenge.wallet.infrastructure.db.repository.TransactionRepos
 import org.springframework.stereotype.Service
 
 @Service
-class FindTransactionsUseCase(val transactionRepository: TransactionRepository) {
+class FindTransactionsUseCase(private val transactionRepository: TransactionRepository) {
 
     fun findByWallet(walletId: Long): List<TransactionResponse>? {
         val transactions = transactionRepository.findByWalletId(walletId)
