@@ -1,6 +1,7 @@
 package com.picpay.challenge.wallet.domain.usecase
 
 import com.picpay.challenge.wallet.app.dto.request.UpdateBalanceRequest
+import com.picpay.challenge.wallet.commons.exception.WalletNotFoundException
 import com.picpay.challenge.wallet.infrastructure.db.model.Transaction
 import com.picpay.challenge.wallet.infrastructure.db.model.TransactionStatus
 import com.picpay.challenge.wallet.infrastructure.db.model.TransactionType
@@ -18,7 +19,7 @@ class UpdateBalanceUseCase(
 
     @Transactional
     fun deposit(walletId: Long, updateBalanceRequest: UpdateBalanceRequest) {
-        val wallet = walletRepository.findById(walletId).get()
+        val wallet = walletRepository.findById(walletId).orElseThrow{ throw WalletNotFoundException("Wallet not found.") }
         val newBalance = wallet.balance.plus(updateBalanceRequest.amount)
         walletRepository.save(Wallet(wallet.id, wallet.accountNumber, newBalance))
 
@@ -33,7 +34,7 @@ class UpdateBalanceUseCase(
 
     @Transactional
     fun withdraw(walletId: Long, updateBalanceRequest: UpdateBalanceRequest) {
-        val wallet = walletRepository.findById(walletId).get()
+        val wallet = walletRepository.findById(walletId).orElseThrow{ throw WalletNotFoundException("Wallet not found.") }
         val newBalance = wallet.balance.minus(updateBalanceRequest.amount)
         walletRepository.save(Wallet(wallet.id, wallet.accountNumber, newBalance))
         val transactionModel = Transaction(
