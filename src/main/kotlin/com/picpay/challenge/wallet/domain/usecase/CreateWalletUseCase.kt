@@ -15,8 +15,8 @@ class CreateWalletUseCase(
 
     @Transactional
     fun create(walletRequest: WalletRequest): WalletResponse {
-        val newWallet = walletRepository.save(Wallet(null, walletRequest.account, BigDecimal.ZERO))
-        return WalletResponse(newWallet.id!!, newWallet.accountNumber, newWallet.balance)
+        val newWallet = walletRepository.save(Wallet(accountNumber = walletRequest.account, balance = BigDecimal.ZERO))
+        return WalletResponse(newWallet.id, newWallet.accountNumber, newWallet.balance)
     }
 
 }

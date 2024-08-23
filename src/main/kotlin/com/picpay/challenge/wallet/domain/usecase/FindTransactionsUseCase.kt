@@ -7,16 +7,15 @@ import org.springframework.stereotype.Service
 @Service
 class FindTransactionsUseCase(val transactionRepository: TransactionRepository) {
 
-    fun findAll(): List<TransactionResponse> {
-        val transactions = transactionRepository.findAll();
+    fun findByWallet(walletId: Long): List<TransactionResponse>? {
+        val transactions = transactionRepository.findByWalletId(walletId)
         return transactions.map { transaction ->
             TransactionResponse(
-                transaction.id!!,
-                transaction.payerWallet,
-                transaction.payeeWallet,
-                transaction.amount
+                transaction.id,
+                transaction.walletId,
+                transaction.amount,
+                transaction.type
             )
         }
     }
-
 }

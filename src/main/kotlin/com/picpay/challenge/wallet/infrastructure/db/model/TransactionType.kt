@@ -1,10 +1,9 @@
 package com.picpay.challenge.wallet.infrastructure.db.model
 
 enum class TransactionType {
-
-    TRANSFER,
+    TRANSFER_IN,
+    TRANSFER_OUT,
     PAYMENT,
     DEPOSIT,
     WITHDRAW
-
 }

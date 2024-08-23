@@ -7,7 +7,7 @@ import java.math.BigDecimal
 data class Wallet(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null,
+    var id: Long = 0,
     val accountNumber: String,
     val balance: BigDecimal
 ) {
